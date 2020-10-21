@@ -19,6 +19,14 @@ function App() {
     setChangeInput(val)
   }
 
+  const deleteItemHandler = (id) => {
+    setItems(prevItems => {
+      return prevItems.filter((item, index) => {
+        return index !== id
+      })
+    })
+  }
+
 
 
   return (
@@ -38,8 +46,12 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map(item => {
-            return <TodoItem item={item}/>
+          {items.map((item, index) => {
+            return <TodoItem
+              onChecked={deleteItemHandler} 
+              key={index}
+              id={index}
+              item={item}/>
           })}
         </ul>
       </div>
